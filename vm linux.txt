@@ -1,0 +1,131 @@
+Particionálás, fájlrendszerek csatolása
+
+(disk format)
+
+lsblk
+
+(su)
+
+sudo fdisk /dev/sdb
+
+n p 1 enter enter w
+
+lsblk
+
+-----------------------------------
+
+Fájlrendszer készítés
+
+
+
+
+sudo mkfs.ext4 /dev/sdb1
+
+
+
+
+Csatolási mappa létrehozása
+
+
+
+
+
+sudo mkdir /adat
+
+sudo mount /dev/sdb1 /adat
+
+
+Ellenőrzés
+df -h
+
+Látszania kell:
+
+/dev/sdb1
+/adat
+
+
+sudo e2label /dev/sdb1 ADAT
+
+Ellenőrzés:
+
+sudo blkid
+
+-----------------------------------
+
+Midnight Commander telepítés
+
+
+
+sudo apt update
+
+sudo apt install mc -y
+
+indítás
+mc
+
+Ha megnyílik a kék kezelőfelület → jó.
+
+Kilépés: KATTINTÁS
+
+-----------------------------------
+
+Apache webszerver telepítés
+
+
+
+sudo apt install apache2 -y
+
+sudo systemctl start apache2
+
+sudo systemctl enable apache2
+
+ellenőrzés
+systemctl status apache2
+
+Ha zöld/active (running) → jó.
+
+kilépés: q
+
+-----------------------------------
+
+Weboldal szerkesztése
+alap webmappa:
+ 
+/var/www/html
+
+sudo nano /var/www/html/index.html
+
+(ctrl k - törli a sorokat)
+...................................
+
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Vizsga weboldal</title>
+    <style>
+        body {
+            background-image: url("images.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: black;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>2026. 05. 27.</h1>
+    <h2>XY</h2>
+</body>
+</html>
+
+...................................
+
+CTRL O ENTER CTRL X
+
+http://localhost
+
+vagy:
+
+http://127.0.0.1
